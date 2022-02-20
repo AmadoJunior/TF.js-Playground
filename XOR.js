@@ -1,7 +1,7 @@
 //TF Model
 let model;
 //P5 Vars
-let resolution = 20;
+let resolution = 40;
 let cols;
 let rows;
 
@@ -61,8 +61,8 @@ function setup(){
     myModel.add(output);
 
     //Define Optimizer && Loss Functions
-    const sgdLearningRate = 0.1;
-    const sgdOpt = tf.train.adam(sgdLearningRate);
+    const sgdLearningRate = 0.5;
+    const sgdOpt = tf.train.sgd(sgdLearningRate);
     const lossFn = "meanSquaredError";
 
     //Compile myModel using Configuration Object derived from prev variables
@@ -78,7 +78,7 @@ function trainModel() {
     //Returns Promise from fit() function
     return myModel.fit(train_xs, train_ys, {
         suffle: true,
-        epochs: 1
+        epochs: 10
     })
 }
 
